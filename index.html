@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LServices Air Duct Cleaning — Career Fit Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:#0a2540; --navy:#071c30; --sky:#1a6bdb; --cyan:#00cfff;
+  --white:#f4f8ff; --gray:#8a9ab5; --accent:#ffb800;
+  --green:#00c48c; --pink:#e84393; --purple:#a29bfe;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--blue);color:var(--white);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 10%,rgba(26,107,219,.18) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 10% 80%,rgba(0,207,255,.08) 0%,transparent 50%);pointer-events:none;z-index:0;}
+
+/* ── LAYOUT ── */
+.page{display:none;animation:fadeUp .5s ease both;}
+.page.active{display:block;}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px;position:relative;z-index:1;}
+
+/* ── HEADER ── */
+.header{text-align:center;margin-bottom:48px;animation:fadeDown .7s ease both;}
+.logo-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(0,207,255,.2);border-radius:40px;padding:8px 20px;margin-bottom:24px;}
+.logo-icon{width:28px;height:28px;background:var(--cyan);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.logo-text{font-size:13px;font-weight:500;letter-spacing:.08em;color:rgba(244,248,255,.75);text-transform:uppercase;}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,7vw,64px);letter-spacing:.04em;line-height:1;margin-bottom:14px;}
+h1 span{color:var(--cyan);}
+.subtitle{font-size:16px;color:var(--gray);line-height:1.6;max-width:480px;margin:0 auto;}
+
+/* ── WELCOME ── */
+.welcome-features{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:36px 0;text-align:left;}
+.feature-pill{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 16px;}
+.feature-pill .icon{font-size:24px;margin-bottom:8px;display:block;}
+.feature-pill .f-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:4px;}
+.feature-pill .f-sub{font-size:12px;color:var(--gray);line-height:1.4;}
+.btn-start{background:linear-gradient(135deg,var(--sky),var(--cyan));color:var(--blue);font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;padding:16px 44px;border-radius:12px;border:none;cursor:pointer;transition:all .2s;letter-spacing:.03em;}
+.btn-start:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,207,255,.35);}
+
+/* ── PROGRESS ── */
+.progress-wrap{margin-bottom:36px;}
+.progress-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;color:var(--gray);}
+.progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--sky),var(--cyan));border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1);width:0%;}
+
+/* ── SECTION LABEL ── */
+.section-label{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-label span{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);white-space:nowrap;}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(0,207,255,.15);}
+
+/* ── QUESTION CARD ── */
+.question-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:36px 36px 32px;backdrop-filter:blur(12px);position:relative;overflow:hidden;animation:fadeUp .35s ease both;}
+.question-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sky),var(--cyan));border-radius:20px 20px 0 0;}
+.q-number{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px;}
+.q-text{font-size:20px;font-weight:500;line-height:1.45;margin-bottom:28px;color:var(--white);}
+.q-hint{font-size:13px;color:var(--gray);font-style:italic;margin-bottom:20px;margin-top:-16px;}
+
+/* ── OPTIONS ── */
+.options{display:flex;flex-direction:column;gap:12px;}
+.option{display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.08);border-radius:12px;padding:16px 18px;cursor:pointer;transition:all .2s ease;text-align:left;width:100%;}
+.option:hover{border-color:rgba(0,207,255,.4);background:rgba(0,207,255,.06);transform:translateX(4px);}
+.option.selected{border-color:var(--cyan);background:rgba(0,207,255,.1);}
+.option-dot{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.2);flex-shrink:0;margin-top:1px;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.option.selected .option-dot{border-color:var(--cyan);background:var(--cyan);}
+.option.selected .option-dot::after{content:'✓';font-size:12px;color:var(--blue);font-weight:700;}
+.option-label{font-size:15px;line-height:1.45;color:rgba(244,248,255,.85);}
+
+/* ── FREE TEXT ── */
+.optional-tag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:rgba(255,184,0,.1);border:1px solid rgba(255,184,0,.2);border-radius:6px;padding:2px 8px;display:inline-block;margin-bottom:14px;}
+.free-text{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:14px;padding:18px 20px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;resize:vertical;min-height:140px;outline:none;transition:border-color .2s;}
+.free-text:focus{border-color:var(--cyan);background:rgba(0,207,255,.05);}
+.free-text::placeholder{color:rgba(138,154,181,.5);}
+.char-count{text-align:right;font-size:12px;color:var(--gray);margin-top:6px;}
+
+/* ── SCENARIO BOX ── */
+.scenario-box{background:rgba(255,184,0,.06);border:1px solid rgba(255,184,0,.2);border-radius:14px;padding:20px 22px;margin-bottom:20px;}
+.scenario-box .s-title{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.scenario-box .s-body{font-size:14px;color:rgba(244,248,255,.8);line-height:1.65;}
+.scenario-box .s-body li{margin-left:18px;margin-top:5px;}
+.scenario-box .s-context{font-size:13px;color:var(--accent);margin-top:12px;font-weight:500;}
+
+/* ── NAV ── */
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px;}
+.btn{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;padding:13px 28px;border-radius:10px;border:none;cursor:pointer;transition:all .2s ease;letter-spacing:.02em;}
+.btn-back{background:transparent;border:1.5px solid rgba(255,255,255,.12);color:var(--gray);}
+.btn-back:hover{border-color:rgba(255,255,255,.3);color:var(--white);}
+.btn-next{background:linear-gradient(135deg,var(--sky),var(--cyan));color:var(--blue);min-width:130px;}
+.btn-next:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,207,255,.35);}
+.btn-next:disabled{opacity:.35;cursor:not-allowed;}
+
+/* ══════════════════════════════════════
+   INTERVIEWER SCORING PANEL
+══════════════════════════════════════ */
+#page-score{background:var(--navy);}
+#page-score body::before{display:none;}
+
+.score-header{text-align:center;padding:40px 24px 32px;border-bottom:1px solid rgba(255,255,255,.07);}
+.score-header h2{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:.04em;color:var(--white);}
+.score-header h2 span{color:var(--cyan);}
+.score-header p{color:var(--gray);font-size:14px;margin-top:8px;}
+
+.interviewer-wrap{max-width:900px;margin:0 auto;padding:40px 24px 80px;}
+
+/* Candidate summary */
+.candidate-summary{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px 28px;margin-bottom:36px;}
+.candidate-summary h3{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+.summary-item{font-size:13px;color:var(--gray);}
+.summary-item strong{display:block;font-size:14px;color:var(--white);margin-bottom:2px;}
+
+/* Written answers review */
+.written-section{margin-bottom:40px;}
+.written-section h3{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.written-section h3::after{content:'';flex:1;height:1px;background:rgba(0,207,255,.15);}
+
+.written-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:20px 22px;margin-bottom:14px;}
+.written-card .wq{font-size:12px;color:var(--gray);margin-bottom:8px;line-height:1.4;}
+.written-card .wa{font-size:14px;color:rgba(244,248,255,.85);line-height:1.65;}
+.written-card .wa.empty{color:rgba(138,154,181,.35);font-style:italic;}
+
+/* Scoring sections */
+.score-section{margin-bottom:44px;}
+.score-section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.07);}
+.score-section-header .ss-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.04em;}
+.score-section-header .ss-max{font-size:13px;color:var(--gray);}
+.score-section-header .ss-total{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--cyan);}
+
+.rubric-table{width:100%;border-collapse:collapse;margin-bottom:16px;}
+.rubric-table th{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);text-align:left;padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.06);}
+.rubric-table td{padding:14px 12px;border-bottom:1px solid rgba(255,255,255,.04);font-size:14px;vertical-align:top;}
+.rubric-table tr:last-child td{border-bottom:none;}
+.rubric-table .cat-name{color:var(--white);font-weight:500;}
+.rubric-table .cat-desc{color:var(--gray);font-size:13px;line-height:1.5;}
+
+/* Score slider */
+.score-input-wrap{display:flex;align-items:center;gap:12px;}
+.score-slider{-webkit-appearance:none;appearance:none;width:140px;height:6px;border-radius:99px;background:rgba(255,255,255,.1);outline:none;cursor:pointer;}
+.score-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:var(--cyan);cursor:pointer;box-shadow:0 0 0 3px rgba(0,207,255,.2);}
+.score-slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--cyan);cursor:pointer;border:none;}
+.score-value{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--cyan);min-width:28px;text-align:center;}
+.score-max{font-size:12px;color:var(--gray);}
+
+/* Notes */
+.interviewer-notes{width:100%;background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 16px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;resize:vertical;min-height:80px;outline:none;transition:border-color .2s;margin-top:14px;}
+.interviewer-notes:focus{border-color:var(--cyan);}
+.interviewer-notes::placeholder{color:rgba(138,154,181,.4);}
+.notes-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:6px;}
+
+/* Final scorecard */
+.final-scorecard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:32px;margin-top:40px;}
+.final-scorecard h2{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.04em;margin-bottom:24px;color:var(--white);}
+.scorecard-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.scorecard-row:last-of-type{border-bottom:none;}
+.sc-label{font-size:14px;color:rgba(244,248,255,.7);}
+.sc-score{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--cyan);}
+.sc-bar-wrap{flex:1;margin:0 16px;height:6px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden;}
+.sc-bar{height:100%;border-radius:99px;transition:width .8s cubic-bezier(.4,0,.2,1);}
+
+.total-row{display:flex;align-items:center;justify-content:space-between;margin-top:24px;padding-top:20px;border-top:2px solid rgba(0,207,255,.2);}
+.total-label{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--white);}
+.total-score-big{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--cyan);line-height:1;}
+.total-verdict{font-size:14px;color:var(--gray);margin-top:4px;}
+
+.verdict-badge{display:inline-block;padding:6px 18px;border-radius:99px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:12px;}
+.verdict-hire{background:rgba(0,196,140,.15);border:1px solid rgba(0,196,140,.4);color:var(--green);}
+.verdict-consider{background:rgba(255,184,0,.1);border:1px solid rgba(255,184,0,.3);color:var(--accent);}
+.verdict-pass{background:rgba(232,67,147,.1);border:1px solid rgba(232,67,147,.3);color:var(--pink);}
+
+.btn-print{background:linear-gradient(135deg,var(--sky),var(--cyan));color:var(--blue);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;padding:14px 36px;border-radius:10px;border:none;cursor:pointer;transition:all .2s;margin-top:28px;width:100%;}
+.btn-print:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,207,255,.3);}
+.btn-new{background:transparent;border:1.5px solid rgba(255,255,255,.15);color:var(--gray);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:12px 28px;border-radius:10px;cursor:pointer;transition:all .2s;margin-top:12px;width:100%;}
+.btn-new:hover{border-color:rgba(255,255,255,.3);color:var(--white);}
+
+/* Candidate result card */
+.result-card{text-align:center;}
+.result-icon{font-size:64px;margin-bottom:20px;display:block;}
+.result-badge{display:inline-block;background:linear-gradient(135deg,var(--sky),var(--cyan));color:var(--blue);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:6px 18px;border-radius:99px;margin-bottom:20px;}
+.result-title{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:.04em;margin-bottom:16px;line-height:1.05;}
+.result-desc{font-size:16px;color:rgba(244,248,255,.7);line-height:1.7;max-width:520px;margin:0 auto 32px;}
+.score-bar-wrap{margin:28px 0;text-align:left;}
+.score-item{margin-bottom:16px;}
+.score-lbl{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;color:rgba(244,248,255,.6);}
+.score-track{height:8px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden;}
+.score-fill{height:100%;border-radius:99px;transition:width 1s cubic-bezier(.4,0,.2,1) .4s;}
+
+.open-answers-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:24px;margin:24px 0;text-align:left;}
+.open-answers-box h3{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;}
+.oa-item{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.05);}
+.oa-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.oa-q{font-size:12px;color:var(--gray);margin-bottom:5px;}
+.oa-a{font-size:14px;color:rgba(244,248,255,.85);line-height:1.6;}
+.oa-a.empty{color:rgba(138,154,181,.35);font-style:italic;}
+
+.transition-screen{text-align:center;padding:60px 24px;}
+.transition-screen .t-icon{font-size:56px;margin-bottom:20px;}
+.transition-screen h2{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:.04em;margin-bottom:12px;}
+.transition-screen p{color:var(--gray);font-size:15px;margin-bottom:32px;line-height:1.6;}
+.btn-interviewer{background:linear-gradient(135deg,#6c5ce7,var(--purple));color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;padding:15px 40px;border-radius:12px;border:none;cursor:pointer;transition:all .2s;}
+.btn-interviewer:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(108,92,231,.4);}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-apply{background:linear-gradient(135deg,var(--sky),var(--cyan));color:var(--blue);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;padding:14px 32px;border-radius:10px;border:none;cursor:pointer;letter-spacing:.03em;transition:all .2s;}
+.btn-apply:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,207,255,.35);}
+.btn-retry{background:transparent;border:1.5px solid rgba(255,255,255,.15);color:var(--gray);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;padding:14px 28px;border-radius:10px;cursor:pointer;transition:all .2s;}
+.btn-retry:hover{border-color:rgba(255,255,255,.3);color:var(--white);}
+
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hidden{display:none!important;}
+
+/* ── CONTACT CAPTURE ── */
+.capture-wrap{max-width:480px;margin:0 auto;text-align:center;}
+.capture-wrap .c-icon{font-size:52px;margin-bottom:16px;display:block;}
+.capture-wrap h2{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:.04em;margin-bottom:10px;}
+.capture-wrap h2 span{color:var(--cyan);}
+.capture-wrap p{font-size:15px;color:var(--gray);line-height:1.6;margin-bottom:32px;}
+.capture-form{display:flex;flex-direction:column;gap:14px;text-align:left;}
+.capture-form label{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:4px;display:block;}
+.capture-form input{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:12px;padding:15px 18px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:15px;outline:none;transition:border-color .2s;}
+.capture-form input:focus{border-color:var(--cyan);background:rgba(0,207,255,.05);}
+.capture-form input::placeholder{color:rgba(138,154,181,.45);}
+.capture-form .field-error{font-size:12px;color:#e84393;margin-top:-8px;display:none;}
+.btn-submit{background:linear-gradient(135deg,var(--sky),var(--cyan));color:var(--blue);font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;transition:all .2s;letter-spacing:.03em;margin-top:6px;width:100%;}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,207,255,.35);}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.sending-state{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--cyan);font-size:14px;margin-top:12px;}
+.spinner{width:18px;height:18px;border:2px solid rgba(0,207,255,.2);border-top-color:var(--cyan);border-radius:50%;animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.privacy-note{font-size:12px;color:rgba(138,154,181,.5);text-align:center;margin-top:8px;}
+.ghl-success{background:rgba(0,196,140,.08);border:1px solid rgba(0,196,140,.25);border-radius:12px;padding:14px 18px;font-size:13px;color:var(--green);margin-top:12px;display:none;text-align:center;}
+.ghl-error{background:rgba(232,67,147,.08);border:1px solid rgba(232,67,147,.25);border-radius:12px;padding:14px 18px;font-size:13px;color:var(--pink);margin-top:12px;display:none;text-align:center;}
+.resume-upload{position:relative;border:2px dashed rgba(0,207,255,.25);border-radius:14px;padding:28px 20px;text-align:center;cursor:pointer;transition:all .2s;background:rgba(0,207,255,.03);}
+.resume-upload:hover,.resume-upload.dragover{border-color:var(--cyan);background:rgba(0,207,255,.08);}
+.resume-upload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.resume-upload .ru-icon{font-size:32px;margin-bottom:8px;}
+.resume-upload .ru-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:4px;}
+.resume-upload .ru-sub{font-size:12px;color:var(--gray);}
+.resume-preview{background:rgba(0,196,140,.07);border:1px solid rgba(0,196,140,.25);border-radius:10px;padding:12px 16px;margin-top:10px;display:none;align-items:center;gap:12px;}
+.resume-preview.show{display:flex;}
+.resume-preview .rp-icon{font-size:22px;}
+.resume-preview .rp-name{font-size:13px;color:var(--white);font-weight:500;flex:1;word-break:break-all;}
+.resume-preview .rp-remove{font-size:12px;color:var(--pink);cursor:pointer;font-weight:600;white-space:nowrap;background:none;border:none;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.capture-form select{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:12px;padding:15px 18px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:15px;outline:none;transition:border-color .2s;appearance:none;cursor:pointer;}
+.capture-form select:focus{border-color:var(--cyan);background:rgba(0,207,255,.05);}
+.capture-form select option{background:#0a2540;color:var(--white);}
+.section-divider{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);padding:6px 0 2px;border-bottom:1px solid rgba(0,207,255,.12);margin-bottom:2px;}
+@media(max-width:480px){.two-col{grid-template-columns:1fr;}.question-card{padding:24px 18px;}.q-text{font-size:17px;}.rubric-table .cat-desc{display:none;}}
+@media print{body::before{display:none;}#page-quiz,#page-welcome,#page-candidate-result,#page-transition,#page-capture{display:none!important;}#page-score{display:block!important;}}</style>
+</head>
+<body>
+
+<!-- ══════════════════════ PAGE: WELCOME ══════════════════════ -->
+<div id="page-welcome" class="page active">
+<div class="container">
+  <div class="header">
+    <div class="logo-badge"><div class="logo-icon">💨</div><span class="logo-text">LServices Air Duct Cleaning · Atlanta</span></div>
+    <h1>CAREER<br><span>FIT QUIZ</span></h1>
+    <p class="subtitle">See if you're built for our Technician team — honest questions, real results.</p>
+  </div>
+  <div style="text-align:center;">
+    <div class="welcome-features">
+      <div class="feature-pill"><span class="icon">🔧</span><div class="f-title">Field Technician</div><div class="f-sub">Hands-on work across Atlanta</div></div>
+      <div class="feature-pill"><span class="icon">📋</span><div class="f-title">16 Questions</div><div class="f-sub">Choice questions first, then written answers</div></div>
+      <div class="feature-pill"><span class="icon">💰</span><div class="f-title">Performance Pay</div><div class="f-sub">Earn % commission on every upsell</div></div>
+      <div class="feature-pill"><span class="icon">⚡</span><div class="f-title">~10 Minutes</div><div class="f-sub">Thoughtful answers, instant result</div></div>
+    </div>
+    <button class="btn-start" onclick="goToQuiz()">Start the Quiz →</button>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════ PAGE: QUIZ ══════════════════════ -->
+<div id="page-quiz" class="page">
+<div class="container">
+  <div class="progress-wrap">
+    <div class="progress-meta"><span id="q-counter">Question 1</span><span id="q-percent">0%</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+  <div id="section-label-wrap"></div>
+  <div class="question-card" id="question-card">
+    <div class="q-number" id="q-number"></div>
+    <div class="q-text" id="q-text"></div>
+    <div class="q-hint hidden" id="q-hint"></div>
+    <div id="answer-area"></div>
+  </div>
+  <div class="nav">
+    <button class="btn btn-back" id="btn-back" onclick="prevQ()">← Back</button>
+    <button class="btn btn-next" id="btn-next" onclick="nextQ()" disabled>Next →</button>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════ PAGE: CONTACT CAPTURE ══════════════════════ -->
+<div id="page-capture" class="page">
+<div class="container">
+  <div class="capture-wrap" style="max-width:580px;">
+    <span class="c-icon">🎯</span>
+    <h2>Almost <span>There!</span></h2>
+    <p>Fill out your details below to complete your application. A resume is optional but helps us move faster.</p>
+    <div class="capture-form">
+
+      <!-- Personal Info -->
+      <div class="section-divider">Personal Info</div>
+      <div class="two-col">
+        <div>
+          <label for="c-fname">First Name *</label>
+          <input type="text" id="c-fname" placeholder="John" autocomplete="given-name">
+          <div class="field-error" id="err-fname">Required.</div>
+        </div>
+        <div>
+          <label for="c-lname">Last Name *</label>
+          <input type="text" id="c-lname" placeholder="Smith" autocomplete="family-name">
+          <div class="field-error" id="err-lname">Required.</div>
+        </div>
+      </div>
+      <div>
+        <label for="c-email">Email Address *</label>
+        <input type="email" id="c-email" placeholder="john@email.com" autocomplete="email">
+        <div class="field-error" id="err-email">Please enter a valid email.</div>
+      </div>
+      <div>
+        <label for="c-phone">Phone Number *</label>
+        <input type="tel" id="c-phone" placeholder="(404) 555-0000" autocomplete="tel">
+        <div class="field-error" id="err-phone">Required.</div>
+      </div>
+
+      <!-- Background -->
+      <div class="section-divider" style="margin-top:8px;">Background</div>
+      <div class="two-col">
+        <div>
+          <label for="c-city">City *</label>
+          <input type="text" id="c-city" placeholder="Atlanta" autocomplete="address-level2">
+          <div class="field-error" id="err-city">Required.</div>
+        </div>
+        <div>
+          <label for="c-zip">ZIP Code</label>
+          <input type="text" id="c-zip" placeholder="30301" autocomplete="postal-code">
+        </div>
+      </div>
+      <div>
+        <label for="c-experience">Years of Experience in HVAC / Field Work</label>
+        <select id="c-experience">
+          <option value="" disabled selected>Select one…</option>
+          <option>No experience — willing to learn</option>
+          <option>Less than 1 year</option>
+          <option>1–2 years</option>
+          <option>3–5 years</option>
+          <option>5+ years</option>
+        </select>
+      </div>
+      <div>
+        <label for="c-availability">Availability to Start</label>
+        <select id="c-availability">
+          <option value="" disabled selected>Select one…</option>
+          <option>Immediately</option>
+          <option>Within 1 week</option>
+          <option>Within 2 weeks</option>
+          <option>Within 30 days</option>
+        </select>
+      </div>
+      <div>
+        <label for="c-heard">How did you hear about us?</label>
+        <select id="c-heard">
+          <option value="" disabled selected>Select one…</option>
+          <option>Indeed</option>
+          <option>Facebook / Instagram</option>
+          <option>Google</option>
+          <option>Friend or Family Referral</option>
+          <option>Craigslist</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <!-- Resume Upload -->
+      <div class="section-divider" style="margin-top:8px;">Resume <span style="color:var(--gray);font-size:10px;font-weight:400;letter-spacing:0;text-transform:none;">(optional)</span></div>
+      <div>
+        <div class="resume-upload" id="resume-upload-zone">
+          <input type="file" id="c-resume" accept=".pdf,.doc,.docx,.txt" onchange="handleResume(this)">
+          <div class="ru-icon">📄</div>
+          <div class="ru-title">Drop your resume here or click to browse</div>
+          <div class="ru-sub">PDF, Word, or TXT · Max 5MB</div>
+        </div>
+        <div class="resume-preview" id="resume-preview">
+          <span class="rp-icon">📎</span>
+          <span class="rp-name" id="resume-name"></span>
+          <button class="rp-remove" onclick="removeResume()">✕ Remove</button>
+        </div>
+        <div class="field-error" id="err-resume" style="margin-top:8px;">File too large. Max 5MB.</div>
+      </div>
+
+      <!-- Submit -->
+      <button class="btn-submit" id="btn-submit" onclick="submitCapture()" style="margin-top:8px;">Submit My Application 🚀</button>
+      <div class="sending-state hidden" id="sending-state"><div class="spinner"></div><span>Submitting your application…</span></div>
+      <div class="ghl-success" id="ghl-success">✅ Application received! We'll be in touch within 48 hours.</div>
+      <div class="ghl-error" id="ghl-error">⚠️ Submitted! Confirmation may be delayed — we'll still be in touch.</div>
+      <p class="privacy-note">🔒 Your information is private and used for hiring purposes only.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════ PAGE: CANDIDATE RESULT ══════════════════════ -->
+<div id="page-candidate-result" class="page">
+<div class="container">
+  <div style="max-width:520px;margin:0 auto;text-align:center;padding:60px 0;">
+    <div style="font-size:72px;margin-bottom:24px;">🎉</div>
+    <div class="logo-badge" style="margin-bottom:28px;">
+      <div class="logo-icon">💨</div>
+      <span class="logo-text">LServices Air Duct Cleaning · Atlanta</span>
+    </div>
+    <h1 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,7vw,58px);letter-spacing:.04em;line-height:1.05;margin-bottom:16px;">Thank You for<br><span style="color:var(--cyan);">Applying!</span></h1>
+    <p style="font-size:16px;color:var(--gray);line-height:1.7;margin-bottom:36px;">We've received your quiz and will review your answers within <strong style="color:var(--white);">48 hours</strong>. If you're a great fit, you'll hear from us directly to schedule the next step.</p>
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:28px 32px;margin-bottom:36px;text-align:left;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;">What happens next</div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;align-items:center;gap:14px;font-size:14px;color:rgba(244,248,255,.8);">
+          <div style="width:32px;height:32px;border-radius:50%;background:rgba(0,207,255,.12);border:1px solid rgba(0,207,255,.25);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">1</div>
+          Our team reviews your quiz answers & score
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;font-size:14px;color:rgba(244,248,255,.8);">
+          <div style="width:32px;height:32px;border-radius:50%;background:rgba(0,207,255,.12);border:1px solid rgba(0,207,255,.25);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">2</div>
+          If you're a strong fit, we'll reach out within 48hrs
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;font-size:14px;color:rgba(244,248,255,.8);">
+          <div style="width:32px;height:32px;border-radius:50%;background:rgba(0,207,255,.12);border:1px solid rgba(0,207,255,.25);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">3</div>
+          We schedule a quick in-person meeting at Sandy Springs
+        </div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:rgba(138,154,181,.5);">Questions? Email us at <a href="mailto:careers@lservicesatl.com" style="color:var(--cyan);text-decoration:none;">careers@lservicesatl.com</a></p>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════ PAGE: TRANSITION ══════════════════════ -->
+<div id="page-transition" class="page">
+<div class="container">
+  <div class="transition-screen">
+    <div class="t-icon">🔒</div>
+    <h2>Interviewer Access</h2>
+    <p>The candidate has completed the quiz.<br>This section is for the hiring manager only.<br>Enter the access code to open the scoring panel.</p>
+    <div style="margin-bottom:20px;">
+      <input type="password" id="access-code-input" placeholder="Enter access code" style="background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:10px;padding:13px 20px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:15px;outline:none;width:260px;text-align:center;">
+      <div id="code-error" style="color:#e84393;font-size:13px;margin-top:8px;display:none;">Incorrect code. Try again.</div>
+    </div>
+    <button class="btn-interviewer" onclick="checkCode()">Open Scoring Panel →</button>
+    <div style="margin-top:16px;"><button onclick="retakeQuiz()" style="background:none;border:none;color:var(--gray);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;text-decoration:underline;">Back to quiz start</button></div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════ PAGE: INTERVIEWER SCORE ══════════════════════ -->
+<div id="page-score" class="page">
+<div class="score-header">
+  <h2>INTERVIEWER <span>SCORING PANEL</span></h2>
+  <p>LServices Air Duct Cleaning — Technician Candidate Evaluation · Total: 100 Points</p>
+</div>
+<div class="interviewer-wrap">
+
+  <!-- Candidate answers summary -->
+  <div class="candidate-summary">
+    <h3>📋 Candidate Quiz Answers</h3>
+    <div id="score-panel-summary"></div>
+  </div>
+
+  <!-- Written open answers -->
+  <div class="written-section">
+    <h3>📝 Written Responses</h3>
+    <div id="score-panel-written"></div>
+  </div>
+
+  <!-- SECTION A: Mindset -->
+  <div class="score-section" id="sec-a-panel">
+    <div class="score-section-header">
+      <div><div class="ss-title">Section A — Mindset & Ownership</div><div class="ss-max">30 points</div></div>
+      <div class="ss-total" id="sec-a-total">0 / 30</div>
+    </div>
+    <table class="rubric-table">
+      <tr><th>Category</th><th>What to look for</th><th style="width:200px">Score</th></tr>
+      <tr>
+        <td><div class="cat-name">Ownership (0–10)</div></td>
+        <td><div class="cat-desc">Takes responsibility without excuses. Owns mistakes. The 3-star review answer shows accountability, not blame-shifting.</div></td>
+        <td><div class="score-input-wrap"><input type="range" class="score-slider" min="0" max="10" value="0" data-section="a" data-key="ownership" oninput="updateScore(this)"><span class="score-value" id="sv-a-ownership">0</span><span class="score-max">/ 10</span></div></td>
+      </tr>
+      <tr>
+        <td><div class="cat-name">Work Ethic (0–10)</div></td>
+        <td><div class="cat-desc">Demonstrates drive, punctuality mindset, self-motivation. Doesn't wait to be told. Responses feel hungry, not passive.</div></td>
+        <td><div class="score-input-wrap"><input type="range" class="score-slider" min="0" max="10" value="0" data-section="a" data-key="ethic" oninput="updateScore(this)"><span class="score-value" id="sv-a-ethic">0</span><span class="score-max">/ 10</span></div></td>
+      </tr>
+      <tr>
+        <td><div class="cat-name">Growth Hunger (0–10)</div></td>
+        <td><div class="cat-desc">Wants to learn, grow, improve. Sees this as a career, not just a job. Answer to "what makes you stay" reveals this.</div></td>
+        <td><div class="score-input-wrap"><input type="range" class="score-slider" min="0" max="10" value="0" data-section="a" data-key="growth" oninput="updateScore(this)"><span class="score-value" id="sv-a-growth">0</span><span class="score-max">/ 10</span></div></td>
+      </tr>
+    </table>
+    <div class="notes-label">Section A Notes</div>
+    <textarea class="interviewer-notes" id="notes-a" placeholder="Add your observations about this candidate's mindset, ownership, and hunger…"></textarea>
+  </div>
+
+  <!-- SECTION B: Sales IQ -->
+  <div class="score-section" id="sec-b-panel">
+    <div class="score-section-header">
+      <div><div class="ss-title">Section B — Sales IQ</div><div class="ss-max">20 points</div></div>
+      <div class="ss-total" id="sec-b-total">0 / 20</div>
+    </div>
+    <table class="rubric-table">
+      <tr><th>Category</th><th>What to look for</th><th style="width:200px">Score</th></tr>
+      <tr>
+        <td><div class="cat-name">Value Explanation (0–10)</div></td>
+        <td><div class="cat-desc">Can explain WHY a service matters to the customer, not just what it costs. Uses benefits language, not feature dumps.</div></td>
+        <td><div class="score-input-wrap"><input type="range" class="score-slider" min="0" max="10" value="0" data-section="b" data-key="value" oninput="updateScore(this)"><span class="score-value" id="sv-b-value">0</span><span class="score-max">/ 10</span></div></td>
+      </tr>
+      <tr>
+        <td><div class="cat-name">Ethical Framing (0–10)</div></td>
+        <td><div class="cat-desc">Natural and helpful, not pushy or fear-based. The upsell scenario answer should feel like a recommendation from a trusted advisor.</div></td>
+        <td><div class="score-input-wrap"><input type="range" class="score-slider" min="0" max="10" value="0" data-section="b" data-key="ethical" oninput="updateScore(this)"><span class="score-value" id="sv-b-ethical">0</span><span class="score-max">/ 10</span></div></td>
+      </tr>
+    </table>
+    <div class="notes-label">Section B Notes</div>
+    <textarea class="interviewer-notes" id="notes-b" placeholder="How naturally did they frame additional services? Did they lead with value or with price?"></textarea>
+  </div>
+
+  <!-- SECTION C: Live Upsell Simulation -->
+  <div class="score-section" id="sec-c-panel">
+    <div class="score-section-header">
+      <div><div class="ss-title">Section C — Live Upsell Simulation</div><div class="ss-max">30 points (scored live by interviewer)</div></div>
+      <div class="ss-total" id="sec-c-total">0 / 30</div>
+    </div>
+    <div class="scenario-box">
+      <div class="s-title">🎭 Read this scenario aloud to the candidate</div>
+      <div class="s-body">
+        "You just completed a $599 air duct cleaning. While working, you noticed:
+        <ul>
+          <li>The dryer vent is heavily clogged</li>
+          <li>There are early signs of microbial growth in the attic insulation</li>
+          <li>No UV light installed in the HVAC system</li>
+        </ul>"
+        <br>The customer is happy and trusts you.
+      </div>
+      <div class="s-context">🎯 Ask them: "In 3–5 minutes, walk me through how you'd present these findings and recommend additional services."</div>
+    </div>
+    <table class="rubric-table">
+      <tr><th>Category</th><th>What to look for</th><th style="width:200px">Score</th></tr>
+      <tr>
+        <td><div class="cat-name">Confidence (0–5)</div></td>
+        <td><div class="cat-desc">Clear voice, steady delivery, no excessive hesitation. Speaks with conviction without being aggressive.</div></td>
+        <td><div class="score-input-wrap"><input type="range" class="score-slider" min="0" max="5" value="0" data-section="c" data-key="confidence" oninput="updateScore(this)"><span class="score-value" id="sv-c-confidence">0</span><span class="score-max">/ 5</span></div></td>
+      </tr>
+      <tr>
+        <td><div class="cat-name">Education (0–5)</div></td>
+        <td><div class="cat-desc">Explains WHY each finding matters to the homeowner's health, safety, or wallet. Not just "you need this."</div></td>
+        <td><div class="score-input-wrap"><input type="range" class="score-slider" min="0" max="5" value="0" data-section="c" data-key="education" oninput="updateScore(this)"><span class="score-value" id="sv-c-education">0</span><span class="score-max">/ 5</span></div></td>
+      </tr>
+      <tr>
+        <td><div class="cat-name">Ethical Framing (0–5)</div></td>
+        <td><div class="cat-desc">Not pushy, no scare tactics. Frames as caring professional sharing findings, gives customer choice.</div></td>
+        <td><div class="score-input-wrap"><input type="range" class="score-slider" min="0" max="5" value="0" data-section="c" data-key="ethical" oninput="updateScore(this)"><span class="score-value" id="sv-c-ethical">0</span><span class="score-max">/ 5</span></div></td>
+      </tr>
+      <tr>
+        <td><div class="cat-name">Closing Ability (0–5)</div></td>
+        <td><div class="cat-desc">Naturally asks for a decision. Something like "Want me to take care of that today?" — comfortable closing, not leaving it open-ended.</div></td>
+        <td><div class="score-input-wrap"><input type="range" class="score-slider" min="0" max="5" value="0" data-section="c" data-key="closing" oninput="updateScore(this)"><span class="score-value" id="sv-c-closing">0</span><span class="score-max">/ 5</span></div></td>
+      </tr>
+    </table>
+
+    <!-- Pressure follow-up -->
+    <div class="scenario-box" style="margin-top:20px;background:rgba(232,67,147,.06);border-color:rgba(232,67,147,.2);">
+      <div class="s-title" style="color:var(--pink);">🔥 Pressure Follow-Up — Say This After Their Pitch</div>
+      <div class="s-body">"That's more than I wanted to spend today."</div>
+      <div class="s-context" style="color:var(--pink);">Now watch how they respond. Score below.</div>
+    </div>
+    <table class="rubric-table" style="margin-top:12px;">
+      <tr><th>Category</th><th>What to look for</th><th style="width:200px">Score</th></tr>
+      <tr>
+        <td><div class="cat-name">Emotional Control (0–5)</div></td>
+        <td><div class="cat-desc">Stays calm, doesn't cave immediately or get defensive. Acknowledges the concern without panic.</div></td>
+        <td><div class="score-input-wrap"><input type="range" class="score-slider" min="0" max="5" value="0" data-section="c" data-key="emotional" oninput="updateScore(this)"><span class="score-value" id="sv-c-emotional">0</span><span class="score-max">/ 5</span></div></td>
+      </tr>
+      <tr>
+        <td><div class="cat-name">Value Reinforcement (0–5)</div></td>
+        <td><div class="cat-desc">Reminds the customer WHY it's worth it. Ties it back to safety, health, or future cost. Doesn't just repeat the price.</div></td>
+        <td><div class="score-input-wrap"><input type="range" class="score-slider" min="0" max="5" value="0" data-section="c" data-key="reinforce" oninput="updateScore(this)"><span class="score-value" id="sv-c-reinforce">0</span><span class="score-max">/ 5</span></div></td>
+      </tr>
+    </table>
+    <div class="notes-label">Section C Notes</div>
+    <textarea class="interviewer-notes" id="notes-c" placeholder="Note their delivery, specific phrases used, how they handled the objection. Did they feel natural or scripted?"></textarea>
+  </div>
+
+  <!-- SECTION D: Review Close -->
+  <div class="score-section" id="sec-d-panel">
+    <div class="score-section-header">
+      <div><div class="ss-title">Section D — Review Close</div><div class="ss-max">10 points</div></div>
+      <div class="ss-total" id="sec-d-total">0 / 10</div>
+    </div>
+    <div class="scenario-box">
+      <div class="s-title">🎭 Ask the candidate</div>
+      <div class="s-body">"The job went great. The customer is smiling and walking you to the door. Show me exactly how you'd ask for a Google review."</div>
+    </div>
+    <table class="rubric-table">
+      <tr><th>Category</th><th>What to look for</th><th style="width:200px">Score</th></tr>
+      <tr>
+        <td><div class="cat-name">Comfort & Confidence (0–5)</div></td>
+        <td><div class="cat-desc">Asks naturally, not awkwardly. Doesn't bury it or make it feel like a favor. Says it like it's normal and expected.</div></td>
+        <td><div class="score-input-wrap"><input type="range" class="score-slider" min="0" max="5" value="0" data-section="d" data-key="comfort" oninput="updateScore(this)"><span class="score-value" id="sv-d-comfort">0</span><span class="score-max">/ 5</span></div></td>
+      </tr>
+      <tr>
+        <td><div class="cat-name">Timing & Phrasing (0–5)</div></td>
+        <td><div class="cat-desc">Picks the right moment, phrases it as a simple ask. Ideally mentions Google specifically, or offers to send a link.</div></td>
+        <td><div class="score-input-wrap"><input type="range" class="score-slider" min="0" max="5" value="0" data-section="d" data-key="timing" oninput="updateScore(this)"><span class="score-value" id="sv-d-timing">0</span><span class="score-max">/ 5</span></div></td>
+      </tr>
+    </table>
+    <div class="notes-label">Section D Notes</div>
+    <textarea class="interviewer-notes" id="notes-d" placeholder="Did they seem comfortable asking? What exact phrasing did they use?"></textarea>
+  </div>
+
+  <!-- SECTION E: Culture & Hunger -->
+  <div class="score-section" id="sec-e-panel">
+    <div class="score-section-header">
+      <div><div class="ss-title">Section E — Culture Fit & Hunger</div><div class="ss-max">10 points</div></div>
+      <div class="ss-total" id="sec-e-total">0 / 10</div>
+    </div>
+    <table class="rubric-table">
+      <tr><th>Category</th><th>What to look for</th><th style="width:200px">Score</th></tr>
+      <tr>
+        <td><div class="cat-name">Team Fit (0–5)</div></td>
+        <td><div class="cat-desc">Would you want this person next to you every day? Do they respect others, communicate well, bring positive energy?</div></td>
+        <td><div class="score-input-wrap"><input type="range" class="score-slider" min="0" max="5" value="0" data-section="e" data-key="team" oninput="updateScore(this)"><span class="score-value" id="sv-e-team">0</span><span class="score-max">/ 5</span></div></td>
+      </tr>
+      <tr>
+        <td><div class="cat-name">Long-Term Hunger (0–5)</div></td>
+        <td><div class="cat-desc">Do they see a future here? Are they excited about learning the trade, growing income, building something? Or just passing through?</div></td>
+        <td><div class="score-input-wrap"><input type="range" class="score-slider" min="0" max="5" value="0" data-section="e" data-key="hunger" oninput="updateScore(this)"><span class="score-value" id="sv-e-hunger">0</span><span class="score-max">/ 5</span></div></td>
+      </tr>
+    </table>
+    <div class="notes-label">Section E Notes</div>
+    <textarea class="interviewer-notes" id="notes-e" placeholder="Overall gut feeling. Would you trust this person in a customer's home? What stood out?"></textarea>
+  </div>
+
+  <!-- FINAL SCORECARD -->
+  <div class="final-scorecard">
+    <h2>Final Scorecard</h2>
+    <div class="scorecard-row">
+      <span class="sc-label">Section A — Mindset & Ownership</span>
+      <div class="sc-bar-wrap"><div class="sc-bar" id="sc-bar-a" style="background:linear-gradient(90deg,#00b894,#00cec9);width:0%"></div></div>
+      <span class="sc-score" id="sc-val-a">0 / 30</span>
+    </div>
+    <div class="scorecard-row">
+      <span class="sc-label">Section B — Sales IQ</span>
+      <div class="sc-bar-wrap"><div class="sc-bar" id="sc-bar-b" style="background:linear-gradient(90deg,#fdcb6e,#e17055);width:0%"></div></div>
+      <span class="sc-score" id="sc-val-b">0 / 20</span>
+    </div>
+    <div class="scorecard-row">
+      <span class="sc-label">Section C — Live Upsell Simulation</span>
+      <div class="sc-bar-wrap"><div class="sc-bar" id="sc-bar-c" style="background:linear-gradient(90deg,#fd79a8,#e84393);width:0%"></div></div>
+      <span class="sc-score" id="sc-val-c">0 / 30</span>
+    </div>
+    <div class="scorecard-row">
+      <span class="sc-label">Section D — Review Close</span>
+      <div class="sc-bar-wrap"><div class="sc-bar" id="sc-bar-d" style="background:linear-gradient(90deg,#6c5ce7,#a29bfe);width:0%"></div></div>
+      <span class="sc-score" id="sc-val-d">0 / 10</span>
+    </div>
+    <div class="scorecard-row">
+      <span class="sc-label">Section E — Culture & Hunger</span>
+      <div class="sc-bar-wrap"><div class="sc-bar" id="sc-bar-e" style="background:linear-gradient(90deg,#1a6bdb,#00cfff);width:0%"></div></div>
+      <span class="sc-score" id="sc-val-e">0 / 10</span>
+    </div>
+    <div class="total-row">
+      <div>
+        <div class="total-label">Total Score</div>
+        <div class="total-verdict" id="verdict-text">Score your sections above</div>
+        <div id="verdict-badge"></div>
+      </div>
+      <div style="text-align:right;">
+        <div class="total-score-big" id="total-score-big">0</div>
+        <div style="font-size:13px;color:var(--gray);">out of 100</div>
+      </div>
+    </div>
+    <button class="btn-print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    <button class="btn-new" onclick="retakeQuiz()">Start New Candidate</button>
+  </div>
+
+</div>
+</div>
+
+<script>
+// ── ACCESS CODE (change this) ──────────────────────────────
+const ACCESS_CODE = 'lservices2024';
+
+// ── QUESTIONS ─────────────────────────────────────────────
+const questions = [
+
+  // ── PART 1: ALL MULTIPLE CHOICE ───────────────────────────
+
+  // Section A — Mindset & Ownership (choice questions)
+  { section:"Section A — Mindset & Ownership", sectionId:"a",
+    text:"What typically makes you stay long-term at a company?", type:"choice", category:"a",
+    options:[
+      {label:"Growth opportunities, fair pay, and feeling genuinely valued.", score:3},
+      {label:"A great team and consistent, steady work.", score:3},
+      {label:"Job security and a reliable paycheck.", score:2},
+      {label:"I tend to move around — I haven't stayed long anywhere.", score:0}
+    ]},
+  { section:null, sectionId:"a",
+    text:"We're building a team of A-players. How do you approach learning on the job?", type:"choice", category:"a",
+    options:[
+      {label:"I'm hungry to learn — growth is my top priority.", score:3},
+      {label:"I'm open to feedback and always want to improve.", score:2},
+      {label:"I like to master what I know before expanding.", score:1},
+      {label:"I'd rather stick to what I already know.", score:0}
+    ]},
+
+  // Section B — Sales IQ (choice questions)
+  { section:"Section B — Sales IQ", sectionId:"b",
+    text:"After completing a job, a customer mentions their dryer vent has been smelling odd. You haven't been asked about it. What do you do?", type:"choice", category:"b",
+    options:[
+      {label:"Naturally mention we offer dryer vent cleaning and explain why it matters.", score:3},
+      {label:"Let them know it's something we can fix before I leave.", score:3},
+      {label:"Wait for them to ask directly before bringing it up.", score:1},
+      {label:"Say nothing — I'm not comfortable recommending services.", score:0}
+    ]},
+  { section:null, sectionId:"b",
+    text:"LServices offers a % commission on every additional service you upsell. Does performance-based pay motivate you?", type:"choice", category:"b",
+    options:[
+      {label:"Yes! I love earning more based on what I personally bring in.", score:3},
+      {label:"Definitely — it pushes me to go above and beyond.", score:3},
+      {label:"Somewhat — I prefer a stable base but commission is a nice bonus.", score:1},
+      {label:"Not really — I'd rather have a flat salary.", score:0}
+    ]},
+  { section:null, sectionId:"b",
+    text:"How comfortable are you asking a happy customer to leave a 5-star Google review?", type:"choice", category:"b",
+    options:[
+      {label:"Very — if the work was great, I'll ask with confidence.", score:3},
+      {label:"I can do it, though it takes a little getting used to.", score:2},
+      {label:"I'd prefer the office handles that follow-up.", score:1},
+      {label:"I'm not comfortable asking at all.", score:0}
+    ]},
+
+  // Section D — Logistics & Standards (choice questions)
+  { section:"Section D — Logistics & Standards", sectionId:"d",
+    text:"Our day starts at 8–9 AM from Sandy Springs. Do you have reliable transportation to get there on time?", type:"choice", category:"d",
+    options:[
+      {label:"Yes — I have my own vehicle and it's dependable.", score:3},
+      {label:"Yes, but my transportation isn't always reliable.", score:1},
+      {label:"I rely on public transit or rides.", score:0},
+      {label:"No, I don't currently have transportation.", score:0}
+    ]},
+  { section:null, sectionId:"d",
+    text:"Jobs can involve driving 1+ hour between homes across Atlanta. How do you feel about that?", type:"choice", category:"d",
+    options:[
+      {label:"No problem — I enjoy driving and it's part of the job.", score:3},
+      {label:"Fine by me, I accept it as part of the role.", score:2},
+      {label:"I can manage, but prefer shorter drives.", score:1},
+      {label:"Long drives are a dealbreaker.", score:0}
+    ]},
+  { section:null, sectionId:"d",
+    text:"Occasionally jobs fall on weekends. Are you okay with that?", type:"choice", category:"d",
+    options:[
+      {label:"Absolutely — I'm flexible and don't mind.", score:3},
+      {label:"Yes, occasionally with advance notice.", score:2},
+      {label:"Rarely and only if truly necessary.", score:1},
+      {label:"Weekends are completely off-limits.", score:0}
+    ]},
+  { section:null, sectionId:"d",
+    text:"All new hires must pass a drug test and background check. Are you comfortable with that?", type:"choice", category:"d",
+    options:[
+      {label:"Completely — I have nothing to worry about.", score:3},
+      {label:"Yes, I understand it's standard.", score:3},
+      {label:"I'd want to understand the process first.", score:1},
+      {label:"That could be a problem.", score:0}
+    ]},
+  { section:null, sectionId:"d",
+    text:"LServices provides uniforms that must be worn on every job. How do you feel about that?", type:"choice", category:"d",
+    options:[
+      {label:"Totally fine — it's professional and I respect the standard.", score:3},
+      {label:"No issue, it's part of representing the company.", score:3},
+      {label:"Neutral about it.", score:1},
+      {label:"I strongly prefer to dress however I like.", score:0}
+    ]},
+  { section:null, sectionId:"d",
+    text:"You arrive at a home and something doesn't look safe — a hazard or unsafe equipment. What do you do?", type:"choice", category:"d",
+    options:[
+      {label:"Stop work immediately, document it, and call my supervisor.", score:3},
+      {label:"Assess carefully and get supervisor approval before proceeding.", score:3},
+      {label:"Try to handle it myself and mention it later.", score:1},
+      {label:"Continue and hope for the best.", score:0}
+    ]},
+  { section:null, sectionId:"d",
+    text:"If your helper is being slow and not pulling their weight, what do you do?", type:"choice", category:"d",
+    options:[
+      {label:"Have a calm, direct conversation and try to motivate them.", score:3},
+      {label:"Lead by example — pick up the pace.", score:2},
+      {label:"Report it to my supervisor.", score:1},
+      {label:"Do my part and ignore it.", score:0}
+    ]},
+  { section:null, sectionId:"d",
+    text:"A customer is frustrated because the job took longer than expected. What do you do?", type:"choice", category:"d",
+    options:[
+      {label:"Calmly explain, sincerely apologize, and make it right.", score:3},
+      {label:"Listen fully, acknowledge concern, and reassure them.", score:3},
+      {label:"Let my supervisor handle it.", score:1},
+      {label:"Avoid the conversation.", score:0}
+    ]},
+
+  // ── PART 2: OPEN-ENDED WRITTEN ANSWERS ───────────────────
+
+  // Section A — Written mindset questions
+  { section:"Section A — Written Answers", sectionId:"a",
+    text:"What are your strongest skills?",
+    hint:"Technical abilities, soft skills, work habits — whatever makes you stand out.", type:"text" },
+  { section:null, sectionId:"a",
+    text:"Tell me about a mistake you made on the job. What happened and what did you do about it?",
+    hint:"There's no wrong answer — we value self-awareness and accountability.", type:"text" },
+  { section:null, sectionId:"a",
+    text:"A customer leaves a 3-star review because you forgot to wipe the vent cover after finishing the job. Whose fault is it, and what do you do next?",
+    hint:"Be honest — we want to understand how you think and take responsibility.", type:"text" },
+
+  // Section C — Live Upsell Scenario
+  { section:"Section C — Live Upsell Scenario", sectionId:"c",
+    text:"Read the scenario below carefully, then write how you would present these findings to the customer.",
+    hint:"Write as if you're speaking directly to the customer. Be natural, not scripted.", type:"scenario" },
+
+];
+
+let currentQ = 0;
+let answers = questions.map(q => (q.type === 'text' || q.type === 'scenario') ? '' : null);
+
+// Score tracking for interviewer panel
+let interviewerScores = {
+  a:{ ownership:0, ethic:0, growth:0 },
+  b:{ value:0, ethical:0 },
+  c:{ confidence:0, education:0, ethical:0, closing:0, emotional:0, reinforce:0 },
+  d:{ comfort:0, timing:0 },
+  e:{ team:0, hunger:0 }
+};
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById(id);
+  el.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function goToQuiz() { showPage('page-quiz'); renderQ(); }
+
+function renderQ() {
+  const q = questions[currentQ];
+  const total = questions.length;
+
+  document.getElementById('q-counter').textContent = `Question ${currentQ+1} of ${total}`;
+  document.getElementById('q-percent').textContent = `${Math.round((currentQ/total)*100)}%`;
+  document.getElementById('progress-fill').style.width = `${(currentQ/total)*100}%`;
+  document.getElementById('q-number').textContent = `${String(currentQ+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}`;
+  document.getElementById('q-text').textContent = q.text;
+
+  const slWrap = document.getElementById('section-label-wrap');
+  slWrap.innerHTML = q.section ? `<div class="section-label"><span>${q.section}</span></div>` : '';
+
+  const hintEl = document.getElementById('q-hint');
+  if (q.hint) { hintEl.textContent = q.hint; hintEl.classList.remove('hidden'); }
+  else hintEl.classList.add('hidden');
+
+  const area = document.getElementById('answer-area');
+  area.innerHTML = '';
+
+  if (q.type === 'choice') {
+    const opts = document.createElement('div');
+    opts.className = 'options';
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'option' + (answers[currentQ] === i ? ' selected' : '');
+      btn.innerHTML = `<div class="option-dot"></div><span class="option-label">${opt.label}</span>`;
+      btn.onclick = () => {
+        answers[currentQ] = i;
+        opts.querySelectorAll('.option').forEach((el,idx) => el.classList.toggle('selected', idx===i));
+        document.getElementById('btn-next').disabled = false;
+      };
+      opts.appendChild(btn);
+    });
+    area.appendChild(opts);
+    document.getElementById('btn-next').disabled = answers[currentQ] === null;
+
+  } else if (q.type === 'text') {
+    const tag = document.createElement('div');
+    tag.className = 'optional-tag'; tag.textContent = 'Written Answer';
+    area.appendChild(tag);
+    const ta = document.createElement('textarea');
+    ta.className = 'free-text'; ta.placeholder = 'Type your answer here…'; ta.value = answers[currentQ]||'';
+    const cc = document.createElement('div'); cc.className = 'char-count'; cc.textContent = `${(answers[currentQ]||'').length} characters`;
+    ta.addEventListener('input', () => { answers[currentQ] = ta.value; cc.textContent = `${ta.value.length} characters`; });
+    area.appendChild(ta); area.appendChild(cc);
+    document.getElementById('btn-next').disabled = false;
+
+  } else if (q.type === 'scenario') {
+    const box = document.createElement('div');
+    box.className = 'scenario-box';
+    box.innerHTML = `<div class="s-title">🎭 Live Scenario — Read carefully</div>
+      <div class="s-body">You just completed a <strong>$599 air duct cleaning</strong>. While working, you noticed:<ul>
+        <li>The dryer vent is heavily clogged</li>
+        <li>Early signs of microbial growth in the attic insulation</li>
+        <li>No UV light installed in the HVAC system</li>
+      </ul><br>The customer is happy and trusts you.</div>
+      <div class="s-context">🎯 In 3–5 sentences below, write exactly how you would present these findings and recommend additional services.</div>`;
+    area.appendChild(box);
+    const ta = document.createElement('textarea');
+    ta.className = 'free-text'; ta.style.minHeight = '160px';
+    ta.placeholder = 'Write as if speaking directly to the customer…'; ta.value = answers[currentQ]||'';
+    const cc = document.createElement('div'); cc.className = 'char-count'; cc.textContent = `${(answers[currentQ]||'').length} characters`;
+    ta.addEventListener('input', () => { answers[currentQ] = ta.value; cc.textContent = `${ta.value.length} characters`; });
+    area.appendChild(ta); area.appendChild(cc);
+    document.getElementById('btn-next').disabled = false;
+  }
+
+  document.getElementById('btn-back').style.visibility = currentQ === 0 ? 'hidden' : 'visible';
+  document.getElementById('btn-next').textContent = currentQ === total-1 ? 'See My Results →' : 'Next →';
+
+  const card = document.getElementById('question-card');
+  card.style.animation = 'none'; card.offsetHeight; card.style.animation = 'fadeUp .35s ease both';
+}
+
+function nextQ() {
+  if (currentQ < questions.length-1) { currentQ++; renderQ(); }
+  else showCandidateResult();
+}
+function prevQ() { if (currentQ>0) { currentQ--; renderQ(); } }
+
+function showCandidateResult() {
+  // Calc quiz scores
+  let scores = { a:0,aMax:0, b:0,bMax:0, d:0,dMax:0 };
+  questions.forEach((q,i) => {
+    if (q.type !== 'choice' || answers[i] === null) return;
+    const s = q.options[answers[i]].score;
+    const max = Math.max(...q.options.map(o=>o.score));
+    if (q.category==='a') { scores.a+=s; scores.aMax+=max; }
+    else if (q.category==='b') { scores.b+=s; scores.bMax+=max; }
+    else if (q.category==='d') { scores.d+=s; scores.dMax+=max; }
+  });
+
+  const aPct = scores.aMax ? Math.round((scores.a/scores.aMax)*100) : 0;
+  const bPct = scores.bMax ? Math.round((scores.b/scores.bMax)*100) : 0;
+  const dPct = scores.dMax ? Math.round((scores.d/scores.dMax)*100) : 0;
+  const totalPct = Math.round((aPct+bPct+dPct)/3);
+
+  let icon,badge,title,desc,verdict;
+  if (totalPct>=80) { icon='🏆';badge='Excellent Fit';title="You're Built\nFor This Job";desc="Your answers show the mindset, reliability, and sales drive we look for at LServices. We'd love to meet you in person!";verdict='Excellent Fit'; }
+  else if (totalPct>=60) { icon='⭐';badge='Strong Potential';title="Great\nFoundation";desc="You've got what it takes in most areas. A few things to grow into, but your profile is solid — we encourage you to move forward!";verdict='Strong Potential'; }
+  else if (totalPct>=40) { icon='🔍';badge='Partial Fit';title="Some Areas\nTo Develop";desc="There are some strong signals here, and some things to work on. Consider whether this role aligns with where you want to grow.";verdict='Partial Fit'; }
+  else { icon='💡';badge='Low Fit';title="Not the Right\nFit Right Now";desc="Based on your answers, this role may not be the best match at this time. We appreciate your honesty!";verdict='Low Fit'; }
+
+  // Cache scores for GHL webhook
+  cachedScores = { totalPct, aPct, bPct, dPct, verdict };
+
+  document.getElementById('r-icon').textContent = icon;
+  document.getElementById('r-badge').textContent = badge;
+  document.getElementById('r-title').innerHTML = title.replace('\n','<br>');
+  document.getElementById('r-desc').textContent = desc;
+
+  setTimeout(() => {
+    setSP('total', totalPct); setSP('a', aPct); setSP('b', bPct);
+    setSP('c', 0); setSP('d', dPct);
+  },100);
+
+function showCandidateResult() {
+  // Calc scores silently for GHL — not shown to candidate
+  let scores = { a:0,aMax:0, b:0,bMax:0, d:0,dMax:0 };
+  questions.forEach((q,i) => {
+    if (q.type !== 'choice' || answers[i] === null) return;
+    const s = q.options[answers[i]].score;
+    const max = Math.max(...q.options.map(o=>o.score));
+    if (q.category==='a') { scores.a+=s; scores.aMax+=max; }
+    else if (q.category==='b') { scores.b+=s; scores.bMax+=max; }
+    else if (q.category==='d') { scores.d+=s; scores.dMax+=max; }
+  });
+  const aPct = scores.aMax ? Math.round((scores.a/scores.aMax)*100) : 0;
+  const bPct = scores.bMax ? Math.round((scores.b/scores.bMax)*100) : 0;
+  const dPct = scores.dMax ? Math.round((scores.d/scores.dMax)*100) : 0;
+  const totalPct = Math.round((aPct+bPct+dPct)/3);
+  const verdict = totalPct>=80 ? 'Excellent Fit' : totalPct>=60 ? 'Strong Potential' : totalPct>=40 ? 'Partial Fit' : 'Low Fit';
+  cachedScores = { totalPct, aPct, bPct, dPct, verdict };
+
+  // Go straight to contact capture
+  showPage('page-capture');
+  document.getElementById('btn-submit').disabled = false;
+  document.getElementById('btn-submit').classList.remove('hidden');
+  document.getElementById('sending-state').classList.add('hidden');
+  document.getElementById('ghl-success').style.display = 'none';
+  document.getElementById('ghl-error').style.display = 'none';
+  document.getElementById('c-name').value = '';
+  document.getElementById('c-email').value = '';
+  document.getElementById('c-phone').value = '';
+}
+
+function showCandidateResultPage() {
+  showPage('page-candidate-result');
+}
+
+function checkCode() {
+  const val = document.getElementById('access-code-input').value.trim();
+  if (val === ACCESS_CODE) {
+    buildScoringPanel();
+    showPage('page-score');
+  } else {
+    document.getElementById('code-error').style.display = 'block';
+  }
+}
+
+function buildScoringPanel() {
+  // Summary of choice answers
+  const summaryEl = document.getElementById('score-panel-summary');
+  summaryEl.innerHTML = '';
+  const grid = document.createElement('div'); grid.className = 'summary-grid';
+  questions.filter(q=>q.type==='choice').forEach((q,i) => {
+    const idx = questions.indexOf(q);
+    const ans = answers[idx];
+    const item = document.createElement('div'); item.className = 'summary-item';
+    item.innerHTML = `<strong>${q.options[ans]?.label || 'No answer'}</strong>${q.text}`;
+    grid.appendChild(item);
+  });
+  summaryEl.appendChild(grid);
+
+  // Written answers
+  const writtenEl = document.getElementById('score-panel-written');
+  writtenEl.innerHTML = '';
+  questions.filter(q=>q.type==='text'||q.type==='scenario').forEach(q => {
+    const idx = questions.indexOf(q);
+    const val = answers[idx];
+    const card = document.createElement('div'); card.className = 'written-card';
+    card.innerHTML = `<div class="wq">${q.type==='scenario'?'🎭 UPSELL SCENARIO — ':''} ${q.text}</div><div class="wa ${!val?'empty':''}">${val||'No answer provided.'}</div>`;
+    writtenEl.appendChild(card);
+  });
+}
+
+function updateScore(el) {
+  const section = el.dataset.section;
+  const key = el.dataset.key;
+  const val = parseInt(el.value);
+  interviewerScores[section][key] = val;
+  document.getElementById(`sv-${section}-${key}`).textContent = val;
+  recalcTotals();
+}
+
+function recalcTotals() {
+  const s = interviewerScores;
+  const totA = s.a.ownership + s.a.ethic + s.a.growth;
+  const totB = s.b.value + s.b.ethical;
+  const totC = s.c.confidence + s.c.education + s.c.ethical + s.c.closing + s.c.emotional + s.c.reinforce;
+  const totD = s.d.comfort + s.d.timing;
+  const totE = s.e.team + s.e.hunger;
+  const grand = totA + totB + totC + totD + totE;
+
+  document.getElementById('sec-a-total').textContent = `${totA} / 30`;
+  document.getElementById('sec-b-total').textContent = `${totB} / 20`;
+  document.getElementById('sec-c-total').textContent = `${totC} / 30`;
+  document.getElementById('sec-d-total').textContent = `${totD} / 10`;
+  document.getElementById('sec-e-total').textContent = `${totE} / 10`;
+
+  document.getElementById('sc-val-a').textContent = `${totA} / 30`;
+  document.getElementById('sc-val-b').textContent = `${totB} / 20`;
+  document.getElementById('sc-val-c').textContent = `${totC} / 30`;
+  document.getElementById('sc-val-d').textContent = `${totD} / 10`;
+  document.getElementById('sc-val-e').textContent = `${totE} / 10`;
+
+  document.getElementById('sc-bar-a').style.width = `${(totA/30)*100}%`;
+  document.getElementById('sc-bar-b').style.width = `${(totB/20)*100}%`;
+  document.getElementById('sc-bar-c').style.width = `${(totC/30)*100}%`;
+  document.getElementById('sc-bar-d').style.width = `${(totD/10)*100}%`;
+  document.getElementById('sc-bar-e').style.width = `${(totE/10)*100}%`;
+
+  document.getElementById('total-score-big').textContent = grand;
+
+  let verdict, cls;
+  if (grand >= 80) { verdict = '✅ Strong Hire — Move to next round'; cls = 'verdict-hire'; }
+  else if (grand >= 60) { verdict = '🤔 Consider — Needs further evaluation'; cls = 'verdict-consider'; }
+  else { verdict = '❌ Pass — Not the right fit at this time'; cls = 'verdict-pass'; }
+
+  document.getElementById('verdict-text').textContent = `${grand} out of 100`;
+  const vb = document.getElementById('verdict-badge');
+  vb.innerHTML = `<span class="verdict-badge ${cls}">${verdict}</span>`;
+}
+
+// ── GHL WEBHOOK ───────────────────────────────────────────
+const GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/RMaDiB6FbFkCZ5TFMxEA/webhook-trigger/df8b7c55-fad2-4f77-9ca9-1f2ba4b3e291';
+
+// Candidate info (filled on capture screen)
+let candidateInfo = { name:'', email:'', phone:'' };
+
+// Cached scores for webhook
+let cachedScores = {};
+
+function applyNow() {
+  // Route to capture page instead of alert
+  showPage('page-capture');
+}
+
+// ── RESUME HANDLING ───────────────────────────────────────
+let resumeFile = null;
+let resumeBase64 = '';
+
+function handleResume(input) {
+  const file = input.files[0];
+  document.getElementById('err-resume').style.display = 'none';
+  if (!file) return;
+  if (file.size > 5 * 1024 * 1024) {
+    document.getElementById('err-resume').style.display = 'block';
+    input.value = '';
+    return;
+  }
+  resumeFile = file;
+  document.getElementById('resume-name').textContent = file.name;
+  document.getElementById('resume-preview').classList.add('show');
+
+  // Convert to base64 for webhook
+  const reader = new FileReader();
+  reader.onload = e => { resumeBase64 = e.target.result; };
+  reader.readAsDataURL(file);
+}
+
+function removeResume() {
+  resumeFile = null;
+  resumeBase64 = '';
+  document.getElementById('c-resume').value = '';
+  document.getElementById('resume-preview').classList.remove('show');
+}
+
+// Drag & drop
+const zone = document.getElementById('resume-upload-zone');
+if (zone) {
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault(); zone.classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    if (file) { document.getElementById('c-resume').files = e.dataTransfer.files; handleResume(document.getElementById('c-resume')); }
+  });
+}
+
+function validateCapture() {
+  let valid = true;
+  const fname = document.getElementById('c-fname').value.trim();
+  const lname = document.getElementById('c-lname').value.trim();
+  const email = document.getElementById('c-email').value.trim();
+  const phone = document.getElementById('c-phone').value.trim();
+  const city  = document.getElementById('c-city').value.trim();
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  document.getElementById('err-fname').style.display = !fname ? 'block' : 'none';
+  document.getElementById('err-lname').style.display = !lname ? 'block' : 'none';
+  document.getElementById('err-email').style.display = !emailRe.test(email) ? 'block' : 'none';
+  document.getElementById('err-phone').style.display = !phone ? 'block' : 'none';
+  document.getElementById('err-city').style.display  = !city  ? 'block' : 'none';
+
+  if (!fname || !lname || !emailRe.test(email) || !phone || !city) valid = false;
+  return {
+    valid, fname, lname, email, phone, city,
+    zip:          document.getElementById('c-zip').value.trim(),
+    experience:   document.getElementById('c-experience').value,
+    availability: document.getElementById('c-availability').value,
+    heard:        document.getElementById('c-heard').value,
+  };
+}
+
+async function submitCapture() {
+  const fields = validateCapture();
+  if (!fields.valid) return;
+
+  candidateInfo = { name: `${fields.fname} ${fields.lname}`, email: fields.email, phone: fields.phone };
+
+  document.getElementById('btn-submit').disabled = true;
+  document.getElementById('btn-submit').classList.add('hidden');
+  document.getElementById('sending-state').classList.remove('hidden');
+
+  const writtenAnswers = questions
+    .filter(q => q.type === 'text' || q.type === 'scenario')
+    .map(q => { const idx = questions.indexOf(q); return `Q: ${q.text}\nA: ${answers[idx] || 'No answer'}`; })
+    .join('\n\n');
+
+  const choiceAnswers = questions
+    .filter(q => q.type === 'choice')
+    .map(q => { const idx = questions.indexOf(q); const ans = answers[idx]; return `Q: ${q.text}\nA: ${ans !== null ? q.options[ans].label : 'No answer'}`; })
+    .join('\n\n');
+
+  const payload = {
+    first_name:      fields.fname,
+    last_name:       fields.lname,
+    email:           fields.email,
+    phone:           fields.phone,
+    city:            fields.city,
+    zip:             fields.zip,
+    experience:      fields.experience,
+    availability:    fields.availability,
+    heard_from:      fields.heard,
+    quiz_score:      cachedScores.totalPct || 0,
+    quiz_verdict:    cachedScores.verdict  || '',
+    score_mindset:   cachedScores.aPct     || 0,
+    score_sales_iq:  cachedScores.bPct     || 0,
+    score_logistics: cachedScores.dPct     || 0,
+    written_answers: writtenAnswers,
+    choice_answers:  choiceAnswers,
+    resume_name:     resumeFile ? resumeFile.name : 'Not provided',
+    resume_file:     resumeBase64 || '',
+    source:          'Career Quiz — LServices',
+    quiz_date:       new Date().toLocaleDateString('en-US'),
+    tags:            'quiz-completed,technician-candidate'
+  };
+
+  try {
+    await fetch(GHL_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'no-cors',
+      body: JSON.stringify(payload)
+    });
+    document.getElementById('sending-state').classList.add('hidden');
+    document.getElementById('ghl-success').style.display = 'block';
+    setTimeout(() => showCandidateResultPage(), 1800);
+  } catch(err) {
+    document.getElementById('sending-state').classList.add('hidden');
+    document.getElementById('ghl-error').style.display = 'block';
+    setTimeout(() => showCandidateResultPage(), 2000);
+  }
+}
+
+function showCandidateResultPage() {
+  showPage('page-candidate-result');
+  // Show interviewer button
+  setTimeout(() => {
+    const existing = document.querySelector('#page-candidate-result .result-card button[style]');
+    if (!existing) {
+      const btn = document.createElement('button');
+      btn.style.cssText='margin-top:24px;background:rgba(108,92,231,.15);border:1px solid rgba(162,155,254,.3);color:#a29bfe;font-family:DM Sans,sans-serif;font-size:13px;font-weight:600;padding:10px 22px;border-radius:8px;cursor:pointer;display:block;margin-left:auto;margin-right:auto;';
+      btn.textContent = '🔒 Interviewer Access';
+      btn.onclick = () => showPage('page-transition');
+      document.querySelector('#page-candidate-result .result-card').appendChild(btn);
+    }
+  }, 300);
+}
+
+function retakeQuiz() {
+  currentQ = 0;
+  answers = questions.map(q => (q.type==='text'||q.type==='scenario') ? '' : null);
+  cachedScores = {};
+  candidateInfo = { name:'', email:'', phone:'' };
+  resumeFile = null; resumeBase64 = '';
+  document.getElementById('access-code-input').value = '';
+  document.getElementById('code-error').style.display = 'none';
+  ['c-fname','c-lname','c-email','c-phone','c-city','c-zip'].forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
+  ['c-experience','c-availability','c-heard'].forEach(id => { const el = document.getElementById(id); if(el) el.selectedIndex=0; });
+  const rp = document.getElementById('resume-preview'); if(rp) rp.classList.remove('show');
+  const ri = document.getElementById('c-resume'); if(ri) ri.value='';
+  showPage('page-welcome');
+}
+</script>
+</body>
+</html>
